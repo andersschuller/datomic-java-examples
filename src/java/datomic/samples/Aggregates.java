@@ -5,6 +5,7 @@ import datomic.Database;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.concurrent.ExecutionException;
 
 import static datomic.Peer.q;
 import static datomic.samples.Fns.printQueryResult;
@@ -13,7 +14,7 @@ import static datomic.samples.IO.transactAllFromResource;
 
 public class Aggregates {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         Connection conn = scratchConnection();
         transactAllFromResource(conn, "datomic-java-examples/bigger-than-pluto.edn");
         Database db = conn.db();

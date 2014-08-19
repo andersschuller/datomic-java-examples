@@ -6,21 +6,23 @@ import datomic.Peer;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URI;
 import java.net.URL;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static datomic.Peer.q;
-import static datomic.Util.*;
-import static datomic.samples.IO.*;
+import static datomic.Util.list;
+import static datomic.Util.map;
+import static datomic.Util.read;
 import static datomic.samples.Fns.scratchConnection;
+import static datomic.samples.IO.resource;
+import static datomic.samples.IO.transactAll;
 
 public class QueryAsData {
     public static Object tempid() {
         return Peer.tempid("db.part/user");
     }
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         Connection conn = scratchConnection();
 
         URL url = resource("datomic-java-examples/social-news.edn");

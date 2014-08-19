@@ -4,17 +4,13 @@ import datomic.Connection;
 import datomic.Database;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.Collection;
-import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static datomic.Peer.q;
 import static datomic.Util.list;
 import static datomic.samples.Fns.printQueryResult;
 import static datomic.samples.Fns.scratchConnection;
-import static datomic.samples.IO.resource;
-import static datomic.samples.IO.transactAll;
 import static datomic.samples.IO.transactAllFromResource;
 
 public class BuildingQueries {
@@ -52,7 +48,7 @@ public class BuildingQueries {
         printQueryResult(result);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         Connection conn = scratchConnection();
         transactAllFromResource(conn, "datomic-java-examples/social-news.edn");
         transactAllFromResource(conn, "datomic-java-examples/stuarts.edn");

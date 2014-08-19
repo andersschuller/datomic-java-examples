@@ -4,7 +4,6 @@ import datomic.Connection;
 import datomic.Database;
 import datomic.Datom;
 
-import javax.sql.rowset.Predicate;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
